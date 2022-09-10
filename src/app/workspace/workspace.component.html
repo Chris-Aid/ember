@@ -1,0 +1,17 @@
+<app-toolbar></app-toolbar>
+
+<mat-drawer-container class="main-content">
+
+  <mat-drawer disableClose mode="side" opened>
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+
+  <mat-drawer *ngIf="opened" mode="side" position="end" opened>
+    <app-secondary-view-content></app-secondary-view-content>
+  </mat-drawer>
+  
+  <mat-drawer-content>
+    <app-primary-view-content></app-primary-view-content>
+  </mat-drawer-content>
+
+</mat-drawer-container>
