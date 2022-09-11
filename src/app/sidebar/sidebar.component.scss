@@ -3,8 +3,24 @@
   font-weight: bold;
 }
 
+.top-node {
+  .mat-button {
+    height: 50px;
+  }
+}
+
+.mat-button {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
 
 /*######### Material Tree Style #########*/
+
+.mat-tree-node {
+  min-height: 32px;
+}
 
 .tree-invisible {
   display: none;
@@ -20,9 +36,9 @@
 /*
  * This padding sets alignment of the nested nodes.
  */
-.tree .mat-nested-tree-node div[role=group] {
-  padding-left: 40px;
-}
+// .tree .mat-nested-tree-node div[role=group] {
+//   padding-left: 40px;
+// }
 
 /*
  * Padding for leaf nodes.

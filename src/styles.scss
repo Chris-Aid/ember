@@ -12,22 +12,18 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+// Scrollbar Styles
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(251,250,247,0.45);
+  border-radius: 16px;
+}
+
 // Spacer for Material Toolbar
 .spacer {
   flex: 1 1 auto;
-}
-
-// Global Styles for Search
-.search {
-  .mat-form-field-wrapper {
-    padding-bottom: 0;
-  }
-
-  .mat-form-field {
-    font-size: 14px;
-  }
-
-  .mat-form-field-infix {
-    padding: 0.5em 0;
-  }
 }
