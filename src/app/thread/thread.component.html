@@ -1,0 +1,13 @@
+<app-message [message]="message"></app-message>
+<mat-divider></mat-divider>
+<ng-container *ngFor="let m of message.threadMessages">
+  <mat-card>
+    <mat-card-title>
+      {{ m.author }}
+    </mat-card-title>
+    <div>
+      {{ m.message }}
+    </div>
+  </mat-card>
+  <mat-divider></mat-divider>
+</ng-container>

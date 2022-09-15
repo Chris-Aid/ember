@@ -1,5 +1,20 @@
 <!-- <editor [init]="{
-  plugins: 'lists link image table code help wordcount',
-  base_url: '/tinymce/',
-  suffix: '.min'
+  base_url: '/tinymce',
+  suffix: '.min',
+  plugins: 'lists link image paste help wordcount',
+    toolbar: 'bold italic | bullist numlist'
 }"></editor> -->
+<mat-divider></mat-divider>
+<mat-card class="message-input">
+  <form #messageForm="ngForm" (ngSubmit)="sendMessage()">
+    <mat-form-field appearance="outline">
+      <input *ngIf="!thread" name="message" matInput [(ngModel)]="message.message" placeholder="Write message..."
+        autocomplete="off" required>
+      <input *ngIf="thread" name="message" matInput [(ngModel)]="threadMessage.message" placeholder="Write message..."
+        autocomplete="off" required>
+      <button mat-icon-button type="submit" [disabled]="messageForm.invalid">
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</mat-card>

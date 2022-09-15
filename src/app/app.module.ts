@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { FormsModule } from '@angular/forms';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 import { AppComponent } from './app.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
@@ -22,6 +23,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatTreeModule } from '@angular/material/tree';
+import { MessageComponent } from './message/message.component';
+import { ThreadComponent } from './thread/thread.component';
 
 
 @NgModule({
@@ -33,12 +36,15 @@ import { MatTreeModule } from '@angular/material/tree';
     PrimaryViewContentComponent,
     SecondaryViewContentComponent,
     SearchComponent,
-    MessageInputComponent
+    MessageInputComponent,
+    MessageComponent,
+    ThreadComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     EditorModule,
 
     MatToolbarModule,
@@ -51,7 +57,9 @@ import { MatTreeModule } from '@angular/material/tree';
     MatCardModule,
     MatTreeModule
   ],
-  providers: [],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

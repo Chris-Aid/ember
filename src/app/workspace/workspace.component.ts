@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Message } from '../shared/message';
 
 @Component({
   selector: 'app-workspace',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkspaceComponent implements OnInit {
 
-  opened: boolean = true;
+  message!: Message;
+  secondaryView: boolean = false;
 
   constructor() { }
 
@@ -15,11 +17,15 @@ export class WorkspaceComponent implements OnInit {
   }
 
   openSecondaryView() {
-    this.opened = true;
+    this.secondaryView = true;
   }
 
   closeSecondaryView() {
-    this.opened = false;
+    this.secondaryView = false;
   }
 
+  openThread(message: Message) {
+    this.openSecondaryView();
+    this.message = message;
+  }
 }

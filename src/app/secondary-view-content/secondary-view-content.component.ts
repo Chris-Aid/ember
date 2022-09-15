@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Message, ThreadMessage } from '../shared/message';
+import { MessageService } from '../shared/message.service';
 
 @Component({
   selector: 'app-secondary-view-content',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecondaryViewContentComponent implements OnInit {
 
-  constructor() { }
+  @Output() closeThreadEvent = new EventEmitter<any>;
+  @Input() message!: Message;
+
+  constructor(
+    private ms: MessageService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  closeThread() {
+    this.closeThreadEvent.emit();
+  }
+
+  addThreadMessage(threadMessage: ThreadMessage) {
+    this.ms.addThreadMessage(threadMessage, this.message.id);
+  }
 }

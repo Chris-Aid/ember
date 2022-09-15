@@ -1,7 +1,14 @@
 <div class="view-container">
-
-  <mat-toolbar color="secondary">
+  <mat-toolbar class="sticky-header" color="secondary">
     Thread
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="closeThread()">
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-toolbar>
-  
+  <div>
+    <app-thread [message]="message"></app-thread>
+  </div>
+  <app-message-input class="sticky-footer" (submitThreadMessage)="addThreadMessage($event)" [thread]="true">
+  </app-message-input>
 </div>

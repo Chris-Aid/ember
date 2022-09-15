@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 // MatTree Imports
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { FlatTreeControl, NestedTreeControl, TreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource } from '@angular/material/tree';
 
 /**
  * Each node has a name and an optional list of children.
@@ -23,24 +23,55 @@ const TREE_DATA: TreeData[] = [
   }
 ];
 
+interface FlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
+
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements AfterViewInit {
 
-  treeControl = new NestedTreeControl<TreeData>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<TreeData>();
+  private _transformer = (node: TreeData, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  };
+
+  treeControl = new FlatTreeControl<FlatNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
+    node => node.children,
+  );
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor() {
     this.dataSource.data = TREE_DATA;
   }
 
-  ngOnInit(): void {
+  hasChild = (_: number, node: FlatNode) => node.expandable;
+
+  @ViewChild('tree') tree: any;
+
+  ngAfterViewInit(): void {
+    this.tree.treeControl.expandAll();
   }
 
-  hasChild = (_: number, node: TreeData) => !!node.children && node.children.length > 0;
+  add(nodeName: string) {
 
+  }
 }

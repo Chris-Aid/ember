@@ -1,4 +1,7 @@
-<mat-toolbar color="secondary">
+<mat-toolbar class="sticky-header" color="secondary">
   Channelname
 </mat-toolbar>
-<app-message-input></app-message-input>
+<div>
+  <app-message *ngFor="let m of messages" [message]="m" (click)="openThread(m)"></app-message>
+</div>
+<app-message-input class="sticky-footer" (submitMessage)="addMessage($event)"></app-message-input>
