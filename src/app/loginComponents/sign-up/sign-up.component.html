@@ -8,9 +8,7 @@
     </button>
   </mat-toolbar>
 
-
   <div class="login-content">
-
     <div class="form-container">
       <form [formGroup]="signUpForm" class="form" (ngSubmit)="submit()">
         <h1>Sign up!</h1>
@@ -28,14 +26,14 @@
             Please enter a valid email address
           </mat-error>
         </mat-form-field>
-        <mat-form-field style="margin-bottom: 24px;">
+        <mat-form-field>
           <input matInput formControlName="password">
           <mat-placeholder class="placeholder">password</mat-placeholder>
           <mat-error *ngIf="password?.errors?.['required']">
             password is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field style="margin-bottom: 24px;">
+        <mat-form-field>
           <input matInput formControlName="confirmedPassword">
           <mat-placeholder class="placeholder">Confirm password</mat-placeholder>
           <mat-error *ngIf="confirmedPassword?.errors?.['required']">
@@ -51,7 +49,7 @@
         <button style="margin-top: 24px;" mat-raised-button routerLink="landing">
           Login as guest
         </button>
-        <span>You already have an account? <a routerLink="sign-up">Login</a></span>
+        <span>You already have an account? <a routerLink="">Login</a></span>
       </form>
     </div>
 
