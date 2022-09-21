@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ember-7984c": {
+      "hosting": {
+        "ember": [
+          "ember-7984c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ember-7984c"
+  }
+}

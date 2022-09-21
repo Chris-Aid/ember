@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 import { AppComponent } from './app.component';
@@ -25,6 +25,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTreeModule } from '@angular/material/tree';
 import { MessageComponent } from './message/message.component';
 import { ThreadComponent } from './thread/thread.component';
+import { LoginComponent } from './loginComponents/login/login.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { SignUpComponent } from './loginComponents/sign-up/sign-up.component';
+import { HomeComponent } from './loginComponents/home/home.component';
+import { LandingComponent } from './loginComponents/landing/landing.component';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 
 @NgModule({
@@ -38,7 +48,11 @@ import { ThreadComponent } from './thread/thread.component';
     SearchComponent,
     MessageInputComponent,
     MessageComponent,
-    ThreadComponent
+    ThreadComponent,
+    LoginComponent,
+    SignUpComponent,
+    HomeComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -46,16 +60,21 @@ import { ThreadComponent } from './thread/thread.component';
     AppRoutingModule,
     FormsModule,
     EditorModule,
-
+    MatInputModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule,
     MatSidenavModule,
     MatDividerModule,
     MatCardModule,
-    MatTreeModule
+    MatTreeModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    HotToastModule.forRoot()
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }

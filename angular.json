@@ -116,6 +116,16 @@
               "node_modules/tinymce/tinymce.min.js"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ember:build:production",
+            "firebaseProject": "ember-7984c",
+            "firebaseHostingSite": "ember-7984c"
+          }
         }
       }
     }

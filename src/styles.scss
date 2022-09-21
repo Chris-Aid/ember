@@ -19,7 +19,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgba(251,250,247,0.45);
+  background-color: rgba(251, 250, 247, 0.45);
   border-radius: 16px;
 }
 
@@ -39,4 +39,13 @@ body {
   position: sticky;
   bottom: 0;
   z-index: 10;
+}
+
+.mat-form-field-underline {
+  background-color: #2e2e2eb3 !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-placeholder {
+
+  color: #2e2e2eb3 !important;
 }
