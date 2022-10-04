@@ -32,9 +32,6 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +45,6 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
     MessageComponent,
     ThreadComponent,
   ],
-
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -65,14 +61,10 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
     MatCardModule,
     MatTreeModule,
     ReactiveFormsModule,
-    // NgxAuthFirebaseUIModule.forRoot(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-
-
-
-
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase)
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
