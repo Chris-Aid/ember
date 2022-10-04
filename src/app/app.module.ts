@@ -25,16 +25,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTreeModule } from '@angular/material/tree';
 import { MessageComponent } from './message/message.component';
 import { ThreadComponent } from './thread/thread.component';
-import { LoginComponent } from './loginComponents/login/login.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { SignUpComponent } from './loginComponents/sign-up/sign-up.component';
-import { HomeComponent } from './loginComponents/home/home.component';
-import { LandingComponent } from './loginComponents/landing/landing.component';
-import { HotToastModule } from '@ngneat/hot-toast';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+
+
+
 
 
 @NgModule({
@@ -49,11 +47,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
     MessageInputComponent,
     MessageComponent,
     ThreadComponent,
-    LoginComponent,
-    SignUpComponent,
-    HomeComponent,
-    LandingComponent
   ],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -70,11 +65,14 @@ import { HotToastModule } from '@ngneat/hot-toast';
     MatCardModule,
     MatTreeModule,
     ReactiveFormsModule,
+    // NgxAuthFirebaseUIModule.forRoot(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore()),
-    HotToastModule.forRoot()
+
+
+
+
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
