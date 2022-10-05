@@ -1,0 +1,10 @@
+<div class="loginComponent">
+  <app-toolbar></app-toolbar>
+  <div class="loginSection">
+    <mat-card>
+      <ngx-auth-firebaseui (onSuccess)="printSuccess($event)" [providers]="[ providers.Google, providers.Github]">
+      </ngx-auth-firebaseui>
+    </mat-card>
+
+  </div>
+</div>
