@@ -17,7 +17,13 @@ export class LoginComponent implements OnInit {
   }
 
   printSuccess(event: any) {
+    console.log(event)
+
     this.router.navigate(['/workspace']);
+  }
+
+  printError(event: any) {
+    console.log(event)
   }
 
 }

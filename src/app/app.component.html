@@ -1,2 +1,4 @@
 <router-outlet></router-outlet>
 <!-- <app-workspace></app-workspace> -->
+<div *ngIf="auth.user$ | async; else other_content">User Ist Eingeloggt</div>
+<ng-template #other_content>User Ist nicht Eingeloggt</ng-template>

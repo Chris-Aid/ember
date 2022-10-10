@@ -4,7 +4,11 @@
 }
 
 .loginSection {
-  padding-left: 256px;
-  padding-right: 256px;
-  padding-top: 256px;
+  display: flex;
+  justify-content: center;
+  padding-top: 128px;
+}
+
+.loginCard {
+  width: 800px;
 }
