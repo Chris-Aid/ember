@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire/compat';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
@@ -23,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MessageComponent } from './message/message.component';
 import { ThreadComponent } from './thread/thread.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -31,6 +33,11 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 
@@ -47,6 +54,7 @@ import { LoginComponent } from './login/login.component';
     MessageComponent,
     ThreadComponent,
     LoginComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +71,11 @@ import { LoginComponent } from './login/login.component';
     MatDividerModule,
     MatCardModule,
     MatTreeModule,
+    MatDialogModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
@@ -71,8 +83,8 @@ import { LoginComponent } from './login/login.component';
       () => 'your_app_name_factory',
       {
         enableFirestoreSync: true, // enable/disable autosync users with firestore
-        toastMessageOnAuthSuccess: false, // whether to open/show a snackbar message on auth success - default : true
-        toastMessageOnAuthError: false, // whether to open/show a snackbar message on auth error - default : true
+        toastMessageOnAuthSuccess: true, // whether to open/show a snackbar message on auth success - default : true
+        toastMessageOnAuthError: true, // whether to open/show a snackbar message on auth error - default : true
         authGuardFallbackURL: '/login', // url for unauthenticated users - to use in combination with canActivate feature on a route
         authGuardLoggedInURL: '/workspace', // url for authenticated users - to use in combination with canActivate feature on a route
         passwordMaxLength: 25, // `min/max` input parameters in components should be within this range.
@@ -86,6 +98,8 @@ import { LoginComponent } from './login/login.component';
         enableEmailVerification: true, // default: true
         useRawUserCredential: true, // If set to true outputs the UserCredential object instead of firebase.User after login and signup - Default: false
       }),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }

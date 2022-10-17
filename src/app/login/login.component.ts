@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthProvider } from 'ngx-auth-firebaseui'
 
@@ -9,21 +10,25 @@ import { AuthProvider } from 'ngx-auth-firebaseui'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router,) { }
+  constructor(
+    public router: Router,
+    // private _snackBar: MatSnackBar
+    ) { }
 
   providers = AuthProvider;
 
   ngOnInit(): void {
   }
 
-  printSuccess(event: any) {
-    console.log(event)
+  printUser(event: any) {
+    console.log(event);
+    // this._snackBar.open(event, 'Close');
 
     this.router.navigate(['/workspace']);
   }
 
   printError(event: any) {
-    console.log(event)
+    console.log(event);
   }
 
 }

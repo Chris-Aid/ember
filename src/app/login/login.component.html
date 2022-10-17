@@ -2,8 +2,8 @@
   <app-toolbar></app-toolbar>
   <div class="loginSection">
     <mat-card class="loginCard">
-      <ngx-auth-firebaseui (onError)="printError($event)" (onSuccess)="printSuccess($event)"
-        [providers]="[ providers.Google, providers.Github]">
+      <ngx-auth-firebaseui (onError)="printError($event)" (onSuccess)="printUser($event)" [guestEnabled]="true"
+        [providers]="[ providers.Google ]">
       </ngx-auth-firebaseui>
     </mat-card>
 
